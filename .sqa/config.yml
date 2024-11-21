@@ -1,0 +1,82 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/SCECcode/bbp:
+      branch: main
+      repo: https://github.com/SCECcode/bbp
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/SCECcode/bbp git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-jade-clam.sh
+        container: qc.acc_skanky-plum-yak
+  QC.Doc:
+    repos:
+      github.com/SCECcode/bbp find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pokey-mauve-tarantula.sh
+        container: qc.doc_goopy-linen-tamarin
+      github.com/SCECcode/bbp git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-apricot-sloth.sh
+        container: qc.doc_bumpy-thistle-badger
+      github.com/SCECcode/bbp markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-russet-zonkey.sh
+        container: qc.doc_snippy-charcoal-dhole
+      github.com/SCECcode/bbp restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-linen-guppy.sh
+        container: qc.doc_flimsy-amber-duck
+  QC.Lic:
+    repos:
+      github.com/SCECcode/bbp licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-cinnabar-mayfly.sh
+        container: qc.lic_randy-chocolate-snake
+  QC.Met:
+    repos:
+      github.com/SCECcode/bbp validate_codemeta:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-mauve-fly.sh
+        container: qc.met_tacky-bistre-wolfhound
+  QC.Sec:
+    repos:
+      github.com/SCECcode/bbp bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-grey-coyote.sh
+        container: qc.sec_baggy-coral-coyote
+  QC.Sty:
+    repos:
+      github.com/SCECcode/bbp flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.bluesy-chocolate-whale.sh
+        container: qc.sty_paltry-vermilion-worm
+      github.com/SCECcode/bbp jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-brown-hyena.sh
+        container: qc.sty_flabby-lime-hamster
+      github.com/SCECcode/bbp oclint:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-blue-ragdoll.sh
+        container: qc.sty_skimpy-champagne-armadillo
+  QC.Uni:
+    repos:
+      github.com/SCECcode/bbp pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.bumpy-sapphire-chin.sh
+        container: qc.uni_scummy-wisteria-ray
+  QC.Ver:
+    repos:
+      github.com/SCECcode/bbp get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-rust-squirt.sh
+        container: qc.ver_sleepy-pink-nightingale
+timeout: 5400
